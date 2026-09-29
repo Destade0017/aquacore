@@ -20,6 +20,16 @@ export function MobileNavigation({
   onClose,
   links,
 }: MobileNavigationProps) {
+  React.useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape" && isOpen) {
+        onClose();
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isOpen, onClose]);
+
   if (!isOpen) return null;
 
   return (
@@ -33,14 +43,14 @@ export function MobileNavigation({
             key={link.href}
             href={link.href}
             onClick={onClose}
-            className="text-sm font-medium text-foreground/80 hover:text-primary py-2 px-3 rounded-md transition-colors hover:bg-secondary"
+            className="text-sm font-medium text-foreground/80 hover:text-primary py-2 px-3 rounded-md transition-colors hover:bg-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           >
             {link.label}
           </Link>
         ))}
       </nav>
       <div className="pt-2 border-t border-border flex flex-col">
-        <Link href="/book" onClick={onClose}>
+        <Link href="/contact" onClick={onClose}>
           <Button variant="default" size="sm" className="w-full">
             Book a Lesson
           </Button>

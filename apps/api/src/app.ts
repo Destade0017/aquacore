@@ -3,6 +3,7 @@ import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import { config } from './config/env';
 import healthRouter from './routes/health.routes';
+import authRouter from './routes/auth.routes';
 import { notFoundHandler, errorHandler } from './middleware/error-handler';
 
 const app = express();
@@ -34,6 +35,7 @@ app.use(express.json());
 
 // API v1 Routes
 app.use('/api/v1/health', healthRouter);
+app.use('/api/v1/auth', authRouter);
 
 // 404 & Error Handling
 app.use(notFoundHandler);

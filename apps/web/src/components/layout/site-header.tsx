@@ -30,9 +30,20 @@ export function SiteHeader() {
 
   return (
     <header className="sticky top-0 z-40 w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
+      {/* Skip to Main Content Link for Keyboard Accessibility */}
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-background focus:text-primary focus:ring-2 focus:ring-ring rounded-md font-medium text-sm shadow-md"
+      >
+        Skip to main content
+      </a>
+
       <Container className="flex h-16 items-center justify-between">
         {/* Brand Logo / Foundation Header */}
-        <Link href="/" className="flex items-center gap-2 font-bold text-lg text-foreground hover:text-primary transition-colors">
+        <Link
+          href="/"
+          className="flex items-center gap-2 font-bold text-lg text-foreground hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-sm px-1"
+        >
           <div className="flex h-8 w-8 items-center justify-center rounded-md bg-primary text-primary-foreground">
             <Waves className="h-5 w-5" />
           </div>
@@ -45,7 +56,7 @@ export function SiteHeader() {
             <Link
               key={link.href}
               href={link.href}
-              className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
+              className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-sm px-1 py-0.5"
             >
               {link.label}
             </Link>
@@ -54,7 +65,7 @@ export function SiteHeader() {
 
         {/* Header Action Area */}
         <div className="hidden md:flex items-center gap-3">
-          <Link href="/book">
+          <Link href="/contact">
             <Button variant="default" size="sm">
               Book a Lesson
             </Button>

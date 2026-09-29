@@ -4,6 +4,8 @@ import cookieParser from 'cookie-parser';
 import { config } from './config/env';
 import healthRouter from './routes/health.routes';
 import authRouter from './routes/auth.routes';
+import programRouter from './routes/program.routes';
+import locationRouter from './routes/location.routes';
 import { notFoundHandler, errorHandler } from './middleware/error-handler';
 
 const app = express();
@@ -36,6 +38,8 @@ app.use(express.json());
 // API v1 Routes
 app.use('/api/v1/health', healthRouter);
 app.use('/api/v1/auth', authRouter);
+app.use('/api/v1/programs', programRouter);
+app.use('/api/v1/locations', locationRouter);
 
 // 404 & Error Handling
 app.use(notFoundHandler);

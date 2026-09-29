@@ -31,3 +31,15 @@ export const requireAuth = async (req: Request, res: Response, next: NextFunctio
     next(err);
   }
 };
+
+/**
+ * Reusable Express authorization middleware requiring ADMIN role.
+ * Rejects unauthenticated requests or requests from non-ADMIN roles with 403 FORBIDDEN.
+ */
+export const requireAdmin = (req: Request, res: Response, next: NextFunction): void => {
+  if (!req.user || req.user.role !== 'ADMIN') {
+    throw new AppError('Administrative authorization required', 403, 'FORBIDDEN');
+  }
+  next();
+};
+
